@@ -2,7 +2,7 @@ import sys
 import os
 from banco import inicializar_banco
 from registros_diarios import criar_registro, ler_registros, ler_um, atualizar_registro, deletar_registro
-from relatorio import menu_relatorios
+from relatorio import relatorio_por_usuario
 
 
 sys.path.insert(0, os.path.dirname(__file__)) 
@@ -37,18 +37,20 @@ def menu_principal():
           print(" 5 - Deletar um registro")
           print(" 6 - Voltar")
           print("\n=====================================================\n")
-          opcao = int(input("Escolha uma opção: "))
-          if opcao == 1:
+
+          opcao = input("Escolha uma opção: ")
+          
+          if opcao == "1":
              criar_registro()
-          elif opcao == 2:
+          elif opcao == "2":
              ler_registros()
-          elif opcao == 3:
+          elif opcao == "3":
              ler_um()
-          elif opcao == 4:
+          elif opcao == "4":
              atualizar_registro()
-          elif opcao == 5:
+          elif opcao == "5":
              deletar_registro()
-          elif opcao == 6:
+          elif opcao == "6":
              print("Voltando ao menu principal.")
              break
           else:
@@ -57,7 +59,7 @@ def menu_principal():
 
         elif escolha == "4":
           print("\nRelatorio")
-          menu_relatorios()
+          relatorio_por_usuario()
 
         elif escolha == "5":
           print("\nSaindo do sistema")

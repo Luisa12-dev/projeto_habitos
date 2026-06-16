@@ -34,7 +34,7 @@ def criar_registro():
         print(f"Hábito selecionado: {habito['nome']}")
 
         data = input("Data da prática do hábito (AAAA-MM-DD): ")
-        status = input("Status: (ex.: 'Concluído', 'Não concluído', 'Parcialmente concluído') ")
+        status = input("Status: ('Concluído', 'Não concluído', 'Parcialmente concluído') ").upper()
         observacao = input("Observações: ")
 
         cursor.execute("""
