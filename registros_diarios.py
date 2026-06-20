@@ -2,7 +2,7 @@ import sqlite3
 from banco import  conectar
 
 def criar_registro():
-    print("---------- Novo Registro de Hábito ----------")
+    print("\n---------- Novo Registro de Hábito ----------")
     try:
         conn = conectar()
         cursor = conn.cursor()
@@ -13,12 +13,12 @@ def criar_registro():
         cursor.execute('SELECT nome FROM usuarios WHERE id = ?', (id_usuario,))
         usuario = cursor.fetchone()
         if usuario is None:
-            print("O ID informado não possui usuário cadastrado.")
+            print("\nO ID informado não possui usuário cadastrado.")
             conn.close()
             return None
 
         if usuario["nome"].lower() != nome_usuario:
-            print("O nome informado não corresponde ao ID")
+            print("\nO nome informado não corresponde ao ID")
             conn.close()
             return None
 
@@ -27,11 +27,11 @@ def criar_registro():
 
         habito = cursor.fetchone()
         if habito is None:
-            print("ID do hábito não encontrado ou não pertencente ao usuário informado.")
+            print("\nID do hábito não encontrado ou não pertencente ao usuário informado.")
             conn.close()
             return None
 
-        print(f"Hábito selecionado: {habito['nome']}")
+        print(f"\nHábito selecionado: {habito['nome']}")
 
         data = input("Data da prática do hábito (AAAA-MM-DD): ")
         status = input("Status: ('Concluído', 'Não concluído', 'Parcialmente concluído') ").upper()
