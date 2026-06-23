@@ -40,9 +40,9 @@ def listar_habitos_por_usuario(usuario_id):
 
 
 def cadastrar():
-    print("CADASTRAR HÁBITO")
+    print("CADASTRAR NOVO HÁBITO")
     listar_usuarios()
-    usuario_id = int(input("Digite o ID do usuário dono do hábito: "))
+    usuario_id = int(input("\nDigite o ID do usuário: "))
     
     nome = input("Nome do hábito: ")
     descricao = input("Descrição (opcional): ")
@@ -147,29 +147,29 @@ def deletar():
         print("Operação cancelada.\n")
 
 
+def menu_habitos():
+    while True:
+        print("\nHÁBITOS\n")
+        print("1 - Cadastrar Novo Hábito")
+        print("2 - Listar Hábitos")
+        print("3 - Editar Hábito")
+        print("4 - Deletar Hábito")
+        print("0 - Sair")
 
-while True:
-    print(" HÁBITOS")
-    print("1 - Cadastrar Hábito")
-    print("2 - Listar Hábitos")
-    print("3 - Editar Hábito")
-    print("4 - Deletar Hábito")
-    print("0 - Sair")
+        op = input("\nEscolha uma opção: ")
 
-    op = input("Escolha uma opção: ")
+        if op == "1":
+            cadastrar()
+        elif op == "2":
+            listar()
+        elif op == "3":
+            editar()
+        elif op == "4":
+            deletar()
+        elif op == "0":
+            print("Encerrando o programa... Até logo!")
+            break
+        else:
+            print("Opção inválida! Tente novamente.\n")
 
-    if op == "1":
-        cadastrar()
-    elif op == "2":
-        listar()
-    elif op == "3":
-        editar()
-    elif op == "4":
-        deletar()
-    elif op == "0":
-        print("Encerrando o programa... Até logo!")
-        break
-    else:
-        print("Opção inválida! Tente novamente.\n")
-
-conexao.close()
+    conexao.close()

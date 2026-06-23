@@ -8,18 +8,18 @@ def cadastrar():
     conexao = conectar()
     cursor = conexao.cursor()
 
-    print(" CADASTRAR USUÁRIO ")
+    print("\nCADASTRAR USUÁRIO\n")
 
     nome = input("Nome ")
 
     while nome == "":
         nome = input("Nome ")
 
-    email = input("Email: ")
+    email = input("\nEmail: ")
 
     while "@" not in email:
-        print("Email inválido.")
-        email = input("Email: ")
+        print("\nEmail inválido.")
+        email = input("\nEmail: ")
 
     data_cadastro = date.today()
 
@@ -43,13 +43,13 @@ def listar_usuarios():
     usuarios = cursor.fetchall()
 
     if len(usuarios) == 0:
-        print("Nenhum usuário cadastrado.")
+        print("\nNenhum usuário cadastrado.")
         return
 
-    print(" USUÁRIOS ")
+    print("\nUSUÁRIOS CADASTRADOS")
 
-    print("ID, Nome, Email,Cadastro")
-
+    print("ID   Nome                      Email                               Cadastro")
+ 
     print("-")
 
     for usuario in usuarios:

@@ -4,6 +4,7 @@ from banco import inicializar_banco
 from usuarios import menu_usuarios
 from registros_diarios import criar_registro, ler_registros, ler_um, atualizar_registro, deletar_registro
 from relatorio import relatorio_por_usuario
+from habitos import menu_habitos
 
 
 sys.path.insert(0, os.path.dirname(__file__)) 
@@ -27,7 +28,7 @@ def menu_principal():
           menu_usuarios()
          
         elif escolha == "2":
-          print("\nHabitos")
+          menu_habitos()
 
         elif escolha == "3":
           while True:
