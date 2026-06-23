@@ -24,7 +24,7 @@ def inicializar_banco():
             nome TEXT NOT NULL,
             descricao TEXT,
             frequencia TEXT NOT NULL,
-            meta TEXT NOT NULL
+            meta TEXT NOT NULL,
             FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
         );
         CREATE TABLE IF NOT EXISTS registros (
