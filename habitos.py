@@ -4,10 +4,11 @@ import sqlite3
 conexao = sqlite3.connect("banco.db")
 cursor = conexao.cursor()
 
+
 def listar_habitos_por_usuario(usuario_id):
     cursor.execute(
         "SELECT id, nome, frequencia, meta FROM habitos WHERE usuario_id=?",
-        (usuario_id,)
+        (usuario_id,),
     )
 
     habitos = cursor.fetchall()
@@ -33,7 +34,11 @@ def cadastrar():
 
     try:
         usuario_id = int(input("Digite o ID do usuário: "))
-        nome = input("Nome do hábito: ")
+        nome = input("Nome do hábito: ").strip()
+        if not nome:
+            print("O nome do hábito não pode ser vazio.")
+            return
+
         descricao = input("Descrição (opcional): ")
 
         print("\nEscolha a frequência:")
@@ -57,11 +62,11 @@ def cadastrar():
 
         cursor.execute(
             """
-            INSERT INTO habitos
-            (usuario_id, nome, descricao, frequencia, meta)
+            INSERT INTO habitos 
+            (usuario_id, nome, descricao, frequencia, meta) 
             VALUES (?, ?, ?, ?, ?)
             """,
-            (usuario_id, nome, descricao, frequencia, meta)
+            (usuario_id, nome, descricao, frequencia, meta),
         )
 
         conexao.commit()
@@ -79,6 +84,9 @@ def listar():
     except ValueError:
         print("Digite um ID válido.")
 
+def editar():
+    try:
+        usuario_id = int(input("Digite o ID do usuário: "))
 
 def editar():
     try:
@@ -91,38 +99,47 @@ def editar():
 
         cursor.execute(
             """
-            SELECT nome, descricao, frequencia, meta
-            FROM habitos
+            SELECT nome, descricao, frequencia, meta 
+            FROM habitos 
             WHERE id=? AND usuario_id=?
             """,
-            (id_habito, usuario_id)
+            (id_habito, usuario_id),
         )
 
         habito = cursor.fetchone()
 
         if habito is None:
-            print("Hábito não encontrado.")
+            print("Hábito não encontrado para este usuário.")
             return
 
         print("\nPressione ENTER para manter o valor atual.")
 
-        nome = input(f"Nome [{habito[0]}]: ") or habito[0]
+        nome = input(f"Nome [{habito[0]}]: ").strip() or habito[0]
         descricao = input(f"Descrição [{habito[1]}]: ") or habito[1]
-        frequencia = input(f"Frequência [{habito[2]}]: ") or habito[2]
 
-        meta = input(f"Meta [{habito[3]}]: ")
-        if meta == "":
-            meta = habito[3]
+        print(f"Frequência atual: {habito[2]}")
+        print("1 - Diária | 2 - Semanal | 3 - Mensal | ENTER - Manter")
+        op_freq = input("Opção: ")
+
+        if op_freq == "1":
+            frequencia = "Diária"
+        elif op_freq == "2":
+            frequencia = "Semanal"
+        elif op_freq == "3":
+            frequencia = "Mensal"
         else:
-            meta = int(meta)
+            frequencia = habito[2]
+
+        meta_input = input(f"Meta [{habito[3]}]: ")
+        meta = habito[3] if meta_input == "" else int(meta_input)
 
         cursor.execute(
             """
-            UPDATE habitos
-            SET nome=?, descricao=?, frequencia=?, meta=?
-            WHERE id=?
+            UPDATE habitos 
+            SET nome=?, descricao=?, frequencia=?, meta=? 
+            WHERE id=? AND usuario_id=?
             """,
-            (nome, descricao, frequencia, meta, id_habito)
+            (nome, descricao, frequencia, meta, id_habito, usuario_id),
         )
 
         conexao.commit()
@@ -141,16 +158,22 @@ def deletar():
 
         id_habito = int(input("\nDigite o ID do hábito: "))
 
-        confirma = input(
-            "Deseja realmente excluir este hábito? (s/n): "
+        # Verifica se o hábito realmente pertence ao usuário antes de deletar
+        cursor.execute(
+            "SELECT id FROM habitos WHERE id=? AND usuario_id=?",
+            (id_habito, usuario_id),
         )
+        if cursor.fetchone() is None:
+            print("Hábito não encontrado para este usuário.")
+            return
+
+        confirma = input("Deseja realmente excluir este hábito? (s/n): ")
 
         if confirma.lower() == "s":
             cursor.execute(
-                "DELETE FROM habitos WHERE id=?",
-                (id_habito,)
+                "DELETE FROM habitos WHERE id=? AND usuario_id=?",
+                (id_habito, usuario_id),
             )
-
             conexao.commit()
             print("Hábito excluído com sucesso!")
         else:
@@ -161,30 +184,32 @@ def deletar():
 
 
 def menu_habitos():
-    while True:
-        print("\n===== HÁBITOS =====")
-        print("1 - Cadastrar Novo Hábito")
-        print("2 - Listar Hábitos")
-        print("3 - Editar Hábito")
-        print("4 - Deletar Hábito")
-        print("0 - Sair")
+    try:
+        while True:
+            print("\n===== HÁBITOS =====")
+            print("1 - Cadastrar Novo Hábito")
+            print("2 - Listar Hábitos")
+            print("3 - Editar Hábito")
+            print("4 - Deletar Hábito")
+            print("0 - Sair")
 
-        op = input("\nEscolha uma opção: ")
+            op = input("\nEscolha uma opção: ")
 
-        if op == "1":
-            cadastrar()
-        elif op == "2":
-            listar()
-        elif op == "3":
-            editar()
-        elif op == "4":
-            deletar()
-        elif op == "0":
-            print("Programa encerrado!")
-            break
-        else:
-            print("Opção inválida!")
+            if op == "1":
+                cadastrar()
+            elif op == "2":
+                listar()
+            elif op == "3":
+                editar()
+            elif op == "4":
+                deletar()
+            elif op == "0":
+                print("Programa encerrado!")
+                break
+            else:
+                print("Opção inválida!")
+    finally:
+        conexao.close()
 
-    conexao.close()
 
 menu_habitos()
