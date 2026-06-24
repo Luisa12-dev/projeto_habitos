@@ -1,5 +1,6 @@
 import sqlite3
 
+
 conexao = sqlite3.connect("banco.db")
 cursor = conexao.cursor()
 
@@ -83,6 +84,9 @@ def listar():
     except ValueError:
         print("Digite um ID válido.")
 
+def editar():
+    try:
+        usuario_id = int(input("Digite o ID do usuário: "))
 
 def editar():
     try:
