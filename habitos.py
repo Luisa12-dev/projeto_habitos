@@ -58,7 +58,11 @@ def cadastrar():
             conexao.close()
             return
 
-        meta = int(input("Meta (número de vezes): "))
+         meta = input("Meta (ex: 30 minutos, 2 litros, 10 páginas): ").strip()
+         if not meta:
+             print("A meta não pode ser vazia.")
+             conexao.close()
+              return
 
         cursor.execute(
             """
@@ -121,12 +125,7 @@ def editar():
         nome = input(f"Nome [{habito[0]}]: ") or habito[0]
         descricao = input(f"Descrição [{habito[1]}]: ") or habito[1]
         frequencia = input(f"Frequência [{habito[2]}]: ") or habito[2]
-
-        meta = input(f"Meta [{habito[3]}]: ")
-        if meta == "":
-            meta = habito[3]
-        else:
-            meta = int(meta)
+        meta = input(f"Meta [{habito[3]}]: ").strip() or habito[3]
 
         cursor.execute(
             """
