@@ -58,11 +58,11 @@ def cadastrar():
             conexao.close()
             return
 
-         meta = input("Meta (ex: 30 minutos, 2 litros, 10 páginas): ").strip()
-         if not meta:
-             print("A meta não pode ser vazia.")
-             conexao.close()
-              return
+        meta = input("Meta (ex: 30 minutos, 2 litros, 10 páginas): ").strip()
+        if not meta:
+            print("A meta não pode ser vazia.")
+            conexao.close()
+            return
 
         cursor.execute(
             """
