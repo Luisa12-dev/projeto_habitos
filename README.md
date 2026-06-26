@@ -7,7 +7,7 @@
 ## 1. Apresentação do Projeto 
 O **Sistema de Acompanhamento de Hábitos Saudáveis** é uma aplicação desenvolvida em Python com persistência de dados em SQLite, criada com o objetivo de auxiliar usuários no monitoramento de hábitos relacionados à saúde e ao bem-estar. 
 
-A proposta do sistema é permitir que cada usuário cadastre seus hábitos, registre diariamente sua realização e acompanhe seu progresso por meio de relatórios[cite: 6]. O projeto foi desenvolvido no contexto da disciplina de Programação, com foco na aplicação prática de conceitos como modularização, persistência em banco de dados, operações de CRUD e organização de sistemas em camadas funcionais. 
+A proposta do sistema é permitir que cada usuário cadastre seus hábitos, registre diariamente sua realização e acompanhe seu progresso por meio de relatórios. O projeto foi desenvolvido no contexto da disciplina de Programação, com foco na aplicação prática de conceitos como modularização, persistência em banco de dados, operações de CRUD e organização de sistemas em camadas funcionais. 
 
 Além disso, o sistema está alinhado ao **ODS 3 — Saúde e Bem-Estar**, pois incentiva a construção de rotinas mais saudáveis e o acompanhamento contínuo de práticas positivas no dia a dia.
 
@@ -17,20 +17,20 @@ Além disso, o sistema está alinhado ao **ODS 3 — Saúde e Bem-Estar**, pois 
 O objetivo do sistema é oferecer uma forma simples e organizada de registrar hábitos saudáveis e acompanhar sua execução ao longo do tempo[cite: 10]. Com isso, o usuário consegue visualizar sua constância, identificar hábitos que estão sendo cumpridos com maior frequência e observar sua evolução pessoal.
 
 Entre os hábitos que podem ser acompanhados no sistema, destacam-se exemplos como:
-* 💧 Ingestão de água; [cite: 13]
-* 🏃 Prática de atividade física; [cite: 14]
-* 🛌 Horas de sono; [cite: 15]
-* 🍏 Alimentação saudável; [cite: 16]
-* 📚 Leitura; [cite: 17]
-* 🧘 Meditação; [cite: 18]
-* 📱 Redução do tempo de tela, entre outros[cite: 19].
+*  Ingestão de água; 
+*  Prática de atividade física; 
+*  Horas de sono; 
+*  Alimentação saudável; 
+*  Leitura; 
+*  Meditação; 
+*  Redução do tempo de tela, entre outros.
 
 Dessa forma, o sistema funciona como uma ferramenta de apoio ao autocuidado, ao planejamento pessoal e à manutenção de rotinas mais equilibradas.
 
 ---
 
 ## 3. Público-Alvo 
-O sistema é destinado a qualquer pessoa que deseje monitorar hábitos saudáveis de forma simples, organizada e acessível[cite: 22]. Seu uso pode beneficiar:
+O sistema é destinado a qualquer pessoa que deseje monitorar hábitos saudáveis de forma simples, organizada e acessível. Seu uso pode beneficiar:
 * Estudantes que desejam melhorar sua rotina; 
 * Pessoas que estão tentando criar novos hábitos; 
 * Usuários que desejam acompanhar metas de saúde e bem-estar; 
