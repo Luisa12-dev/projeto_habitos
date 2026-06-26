@@ -247,8 +247,8 @@ Além do aspecto técnico, o projeto também se destaca por abordar uma temátic
 
 
 
-# [cite_start]📋 Sistema de Acompanhamento de Hábitos Saudáveis [cite: 1]
-## [cite_start]Documentação do Projeto [cite: 2]
+#  Sistema de Acompanhamento de Hábitos Saudáveis 
+## Documentação do Projeto 
 [cite_start]**Programação 1 · UPE · Profª Aeda** [cite: 3]
 
 ---
@@ -292,8 +292,8 @@ Além do aspecto técnico, o projeto também se destaca por abordar uma temátic
 | Nome | GitHub | Responsabilidade |
 | :--- | :--- | :--- |
 | **Ana Luísa Oliveira Braga** | @Luisa12-dev | Líder técnica — banco de dados, menu principal, relatórios e integração |
-| **Gabriel Santos** | @GabrielSilvaSantos | CRUD de hábitos |
-| **Jafia Alves Melo** | @JafiaAlvesMelo | CRUD de usuários e CRUD de registros diários |
+| **Gabriel Santos** | @GabrielSilvaSantos | CRUD de usuários e CRUD hábitos |
+| **Jafia Alves Melo** | @JafiaAlvesMelo |  CRUD de registros diários |
 
 [cite_start][cite: 29]
 
@@ -303,7 +303,7 @@ Além do aspecto técnico, o projeto também se destaca por abordar uma temátic
 [cite_start]O sistema foi dividido em quatro grandes áreas funcionais: usuários, hábitos, registros diários e relatórios[cite: 31].
 
 ### 5.1. [cite_start]Gerenciamento de Usuários [cite: 32]
-Módulo desenvolvido por **Jáfia Alves**. [cite_start]Permite realizar o cadastro e a manutenção dos dados das pessoas que utilizarão o sistema[cite: 33]. [cite_start]As funcionalidades implementadas são[cite: 34]:
+Módulo desenvolvido por **Gabriel Santos**. [cite_start]Permite realizar o cadastro e a manutenção dos dados das pessoas que utilizarão o sistema[cite: 33]. [cite_start]As funcionalidades implementadas são[cite: 34]:
 * [cite_start]Cadastrar usuário; [cite: 35]
 * [cite_start]Listar usuários cadastrados; [cite: 36]
 * [cite_start]Editar nome e e-mail de um usuário; [cite: 37]
