@@ -1,5 +1,17 @@
 import sqlite3
 from banco import  conectar
+from datetime import datetime
+from habitos import listar_habitos_por_usuario
+
+
+def obter_data_valida(mensagem="Data (DD/MM/AAAA): "):
+            while True:
+                data_input = input(mensagem).strip()
+                try:
+                    dt = datetime.strptime(data_input, "%d/%m/%Y")
+                    return dt.strftime("%Y-%m-%d")
+                except ValueError:
+                    print("Data inválida! Digite uma data real no formato DD/MM/AAAA.")
 
 def criar_registro():
     print("\n---------- Novo Registro de Hábito ----------")
@@ -22,6 +34,7 @@ def criar_registro():
             conn.close()
             return None
 
+        listar_habitos_por_usuario(id_usuario)
         id_habito = int(input("ID do hábito: "))
         cursor.execute('SELECT nome FROM habitos WHERE id = ? AND id_usuario = ?', (id_habito, id_usuario))
 
@@ -33,8 +46,9 @@ def criar_registro():
 
         print(f"\nHábito selecionado: {habito['nome']}")
 
-        data = input("Data da prática do hábito (AAAA-MM-DD): ")
-        status = input("Status: ('Concluído', 'Não concluído', 'Parcialmente concluído') ").upper()
+        #data = input("Data da prática do hábito (AAAA-MM-DD): ")
+        data = obter_data_valida("Data da prática do hábito (DD/MM/AAAA): ")
+        status = input("Status: ('Realizado', 'Não realizado') ").title()
         observacao = input("Observações: ")
 
         cursor.execute("""
@@ -75,12 +89,18 @@ def ler_registros():
         conn.close()
         return
 
-    print("\n-------------Registros cadastrados-------------\n")
+        print("\n-------------Registros cadastrados-------------\n")
     for registro in registros:
         print(
-            f"ID do hábito: {registro['id_habito']} |\n {registro['status']}\n"
-            f"{registro['data']}\n"
-            f"Observação: {registro['observacao']}\n")
+            f"Registro (ID): {registro['id']}\n"
+            f"Usuário (ID):  {registro['id_usuario']}\n"
+            f"Hábito:        {registro['nome_habito']}\n"
+            f"ID do hábito:  {registro['id_habito']}\n"
+            f"Status:        {registro['status']}\n"
+            f"Data:          {registro['data']}\n"
+            f"Observação:    {registro['observacao']}\n")
+        print("--------------------------------------------------")
+  
 
     conn.close()
 
@@ -123,6 +143,7 @@ def atualizar_registro():
     cursor = conn.cursor()
 
     try:
+        ler_registros()
         id_registro = int(input("Informe o ID  do registro que deseja atualizar: "))
         
         cursor.execute('SELECT * FROM registros WHERE id = ?', (id_registro,))
@@ -131,16 +152,23 @@ def atualizar_registro():
         if not registro:
             print("\nRegistro não encontrado\n")
             return
+        
+        print("\n-------------Registros cadastrados-------------\n")
+        print(
+            f"Registro (ID): {registro['id']}\n"
+            f"Usuário (ID):  {registro['id_usuario']}\n"
+            f"Hábito:        {registro['nome_habito']}\n"
+            f"ID do hábito:  {registro['id_habito']}\n"
+            f"Status:        {registro['status']}\n"
+            f"Data:          {registro['data']}\n"
+            f"Observação:    {registro['observacao']}\n")
+        print("--------------------------------------------------")
 
-        print("----- Dados do Registro Atual -----")
-        print(f"ID hábito: {registro['id_habito']}")
-        print(f"\nID do registro: {registro['id']}")
-        print(f"Data: {registro['data']}")
-        print(f"Observação: {registro['observacao']}")
 
         print("\n---------- Atualização do registro ----------\n")
-        nova_data = input("Nova data (AAAA-MM-DD): ")
-        novo_status = input("Novo status ('Concluído', 'Não concluído', 'Parcialmente concluído'): ")
+        
+        nova_data = obter_data_valida("\n-Nova data (DD/MM/AAAA): ")
+        novo_status = input("Novo status ('Realizado', 'Não realizado'): ").title()
         nova_observacao = input("Nova observação: ")
 
         cursor.execute("""
@@ -164,6 +192,7 @@ def deletar_registro():
     cursor = conn.cursor()
 
     try:
+        ler_registros()
         print("----------Deletar Registro ----------")
         cursor.execute("""
         SELECT R.*, H.nome AS nome_habito
@@ -211,3 +240,44 @@ def deletar_registro():
         print(f"Erro no banco de dados: {e}\n")
     finally:
         conn.close()
+
+
+def menu_registros():
+    while True:
+            print("\n============================ Registros Diários ============================\n")
+            print(" 1 - Criar novo registro")
+            print(" 2 - Ler todos os registros")
+            print(" 3 - Ler um registro específico")
+            print(" 4 - Atualizar registro")
+            print(" 5 - Deletar um registro")
+            print(" 6 - Voltar")
+
+            opcao = input("\nEscolha uma opção: ").strip()
+
+            if opcao == "1":
+                criar_registro()
+                print("===========================================================================\n")
+
+            elif opcao == "2":
+                ler_registros()
+                print("===========================================================================\n")
+
+            elif opcao == "3":
+                ler_um()
+                print("===========================================================================\n")
+
+            elif opcao == "4":
+                atualizar_registro()
+                print("===========================================================================\n")
+
+            elif opcao == "5":
+                deletar_registro()
+                print("===========================================================================\n")
+
+            elif opcao == "6":
+                print("Voltando ao menu principal.")
+                print("===========================================================================\n")
+                break
+
+            else:
+                print("\nOpção inválida!")

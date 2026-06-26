@@ -8,18 +8,18 @@ def cadastrar():
     conexao = conectar()
     cursor = conexao.cursor()
 
-    print("\nCADASTRAR USUÁRIO\n")
+    print("\n============================ CADASTRAR USUÁRIO ============================\n")
 
-    nome = input("Nome ")
+    nome = input("\nNome: ")
 
     while nome == "":
-        nome = input("Nome ")
+        nome = input("Nome: ")
 
     email = input("\nEmail: ")
 
     while "@" not in email:
         print("\nEmail inválido.")
-        email = input("\nEmail: ")
+        email = input("Email: ")
 
     data_cadastro = date.today()
 
@@ -153,7 +153,7 @@ def menu_usuarios():
     cursor = conexao.cursor()
     while True:
 
-        print("\n======================== MENU DO USUÁRIO =======================\n")
+        print("\n============================= MENU DO USUÁRIO ============================\n")
         print(" 1 - Cadastrar usuário")
         print(" 2 - Listar usuários")
         print(" 3 - Editar usuário")

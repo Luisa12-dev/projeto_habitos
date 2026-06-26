@@ -435,7 +435,7 @@ def menu_relatorios():
             print(f"  {k}. {label}")
         print("  0. Voltar")
 
-        escolha = input("Opção: ").strip()
+        escolha = input("\nOpção: ").strip()
 
         if escolha == "0":
             break
