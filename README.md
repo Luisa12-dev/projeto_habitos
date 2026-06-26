@@ -14,7 +14,7 @@ Além disso, o sistema está alinhado ao **ODS 3 — Saúde e Bem-Estar**, pois 
 ---
 
 ## 2. Objetivo do Sistema 
-O objetivo do sistema é oferecer uma forma simples e organizada de registrar hábitos saudáveis e acompanhar sua execução ao longo do tempo[cite: 10]. Com isso, o usuário consegue visualizar sua constância, identificar hábitos que estão sendo cumpridos com maior frequência e observar sua evolução pessoal.
+O objetivo do sistema é oferecer uma forma simples e organizada de registrar hábitos saudáveis e acompanhar sua execução ao longo do tempo. Com isso, o usuário consegue visualizar sua constância, identificar hábitos que estão sendo cumpridos com maior frequência e observar sua evolução pessoal.
 
 Entre os hábitos que podem ser acompanhados no sistema, destacam-se exemplos como:
 *  Ingestão de água; 
@@ -44,7 +44,8 @@ O sistema é destinado a qualquer pessoa que deseje monitorar hábitos saudávei
 | :--- | :--- | :--- |
 | **Ana Luísa Oliveira Braga** | @Luisa12-dev | Líder técnica — banco de dados, menu principal, relatórios e integração |
 | **Gabriel Santos** | @GabrielSilvaSantos | CRUD de usuários e CRUD hábitos |
-| **Jafia Alves Melo** | @JafiaAlvesMelo |  CRUD de registros diários |
+| **Jafia Alves Melo** | @JafiaAlvesMelo |  CRUD de registros diários, suporte durante toda a realização do projeto e conferência do funcionamento dos códigos implementados. | 
+ 
 
 
 
